@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Игорь Тимохин](https://up.htmlacademy.ru/javascript-individual/2/user/2449807).
-* Наставник: `Неизвестно`.
+* Наставник: [Виктория Никитина](https://github.com/vikitina).
 
 ---
 
