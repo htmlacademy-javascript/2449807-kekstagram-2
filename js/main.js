@@ -92,3 +92,4 @@ const getData = () => {
   console.log(data)
 };
 getData();
+getData();
