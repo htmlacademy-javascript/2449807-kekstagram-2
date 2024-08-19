@@ -1,23 +1,37 @@
+import { openModal } from './big-picture.js';
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const cardContainer = document.querySelector('.pictures');
-
+const cardContainerTag = document.querySelector('.pictures');
+const localData = [];
 
 const clearCard = () => {
   document.querySelectorAll('.picture').forEach((item) => { item.remove() });
 };
 
-const renderCard = (data) => {
+const renderCards = (data) => {
+  localData.length = 0;
+  localData.push(...data.slice());
   clearCard();
   const fragment = document.createDocumentFragment();
-  data.forEach(({ url, comments, likes }) => {
+  data.forEach((item) => {
+    const { url, comments, likes, id } = item;
     const card = pictureTemplate.cloneNode(true);
     card.querySelector('.picture__img').src = url;
     card.querySelector('.picture__comments').textContent = comments.length;
     card.querySelector('.picture__likes').textContent = likes;
+    card.dataset.id = id;
     fragment.append(card);
   });
-  cardContainer.append(fragment);
+  cardContainerTag.append(fragment);
   return data;
 };
 
-export { renderCard };
+cardContainerTag.addEventListener('click', (evt) => {
+  const card = evt.target.closest('.picture');
+  if (card) {
+    const id = Number(card.dataset.id);
+    const photoData = localData.find((photo) => photo.id === id);
+    openModal(photoData);
+  }
+});
+
+export { renderCards };

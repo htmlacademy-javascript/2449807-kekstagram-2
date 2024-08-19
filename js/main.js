@@ -1,5 +1,5 @@
 import { getData } from './data.js';
-import { renderCard } from './render-card.js';
+import { renderCards } from './render-card.js';
 
 
-renderCard(getData());
+renderCards(getData());
