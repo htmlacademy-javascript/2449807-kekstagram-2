@@ -92,3 +92,5 @@ commentsLoaderButtonTag.addEventListener('click', () => {
 });
 
 export { openModal, closeModal };
+
+//modal closes
