@@ -11,4 +11,6 @@ const counter = () => {
   return () => ++n;
 };
 
-export { getRandomInteger, counter };
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export { getRandomInteger, counter, isEscapeKey};

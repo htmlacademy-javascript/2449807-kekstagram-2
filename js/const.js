@@ -39,4 +39,11 @@ const NAMES = [
   'Светлана'
 ];
 
-export { DESCRIPTIONS, MESSAGES, NAMES };
+const COMMENTS_STEP = 5;
+
+export {
+  DESCRIPTIONS,
+  MESSAGES,
+  NAMES,
+  COMMENTS_STEP
+};
