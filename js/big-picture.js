@@ -77,13 +77,11 @@ const openModal = (item) => {
 };
 
 
-const closeModal = (evt) => {
-  evt.preventDefault();
+function closeModal () {
   modalTag.classList.add('hidden');
   bodyTag.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
-};
-
+}
 
 closeButtonTag.addEventListener('click', closeModal);
 
@@ -92,5 +90,3 @@ commentsLoaderButtonTag.addEventListener('click', () => {
 });
 
 export { openModal, closeModal };
-
-//modal closes

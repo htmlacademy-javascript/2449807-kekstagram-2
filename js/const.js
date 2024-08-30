@@ -41,9 +41,12 @@ const NAMES = [
 
 const COMMENTS_STEP = 5;
 
+const MAX_SYMBOL = 14;
+
 export {
   DESCRIPTIONS,
   MESSAGES,
   NAMES,
-  COMMENTS_STEP
+  COMMENTS_STEP,
+  MAX_SYMBOL
 };
