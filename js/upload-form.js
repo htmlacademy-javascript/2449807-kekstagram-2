@@ -1,4 +1,4 @@
-import { isValid } from './validation.js';
+import { isValid, resetValidation } from './validation.js';
 
 const uploadFileTag = document.querySelector('#upload-file');
 const modalTag = document.querySelector('.img-upload__overlay');
@@ -13,6 +13,7 @@ const openModal = () => {
 const closeModal = () => {
   modalTag.classList.add('hidden');
   formTag.reset();
+  resetValidation();
 };
 
 uploadFileTag.addEventListener('change', () => {

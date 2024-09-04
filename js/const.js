@@ -41,12 +41,17 @@ const NAMES = [
 
 const COMMENTS_STEP = 5;
 
-const MAX_SYMBOL = 14;
+const MAX_SYMBOL = 140;
 
+const MAX_HASHTAGS = 5;
+
+const SPACE = /\s+/g;
 export {
   DESCRIPTIONS,
   MESSAGES,
   NAMES,
   COMMENTS_STEP,
-  MAX_SYMBOL
+  MAX_SYMBOL,
+  MAX_HASHTAGS,
+  SPACE
 };
