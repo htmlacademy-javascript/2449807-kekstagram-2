@@ -1,5 +1,5 @@
 import { isValid, resetValidation } from './validation.js';
-
+import { scaleReset } from './scale.js';
 const uploadFileTag = document.querySelector('#upload-file');
 const modalTag = document.querySelector('.img-upload__overlay');
 const closeButtonTag = document.querySelector('#upload-cancel');
@@ -14,6 +14,7 @@ const closeModal = () => {
   modalTag.classList.add('hidden');
   formTag.reset();
   resetValidation();
+  scaleReset();
 };
 
 uploadFileTag.addEventListener('change', () => {
@@ -30,3 +31,5 @@ formTag.addEventListener('submit', (evt) => {
     evt.preventDefault();
   }
 });
+
+export { modalTag };

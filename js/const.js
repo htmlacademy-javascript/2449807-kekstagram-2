@@ -46,6 +46,14 @@ const MAX_SYMBOL = 140;
 const MAX_HASHTAGS = 5;
 
 const SPACE = /\s+/g;
+
+const SCALE = {
+  DEFAULT: 100,
+  MIN: 25,
+  MAX: 100,
+  SCALE_STEP: 25
+};
+
 export {
   DESCRIPTIONS,
   MESSAGES,
@@ -53,5 +61,6 @@ export {
   COMMENTS_STEP,
   MAX_SYMBOL,
   MAX_HASHTAGS,
-  SPACE
+  SPACE,
+  SCALE
 };
