@@ -1,9 +1,10 @@
-import { modalTag } from './upload-form.js';
 import { SCALE } from './const.js';
-const minusTag = document.querySelector('.scale__control--smaller');
-const plusTag = document.querySelector('.scale__control--bigger');
-const valueTag = document.querySelector('.scale__control--value');
-const imageTag = document.querySelector('.img-upload__preview img');
+
+const modalTag = document.querySelector('.img-upload__overlay');
+const minusTag = modalTag.querySelector('.scale__control--smaller');
+const plusTag = modalTag.querySelector('.scale__control--bigger');
+const valueTag = modalTag.querySelector('.scale__control--value');
+const imageTag = modalTag.querySelector('.img-upload__preview img');
 
 let currentScale = SCALE.DEFAULT;
 
