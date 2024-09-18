@@ -4,7 +4,6 @@ const effectsTag = document.querySelector('.effects');
 const imageTag = document.querySelector('.img-upload__preview img');
 const sliderTag = document.querySelector('.effect-level__slider');
 const inputTag = document.querySelector('.effect-level__value');
-const defaultTag = document.querySelector('#effect-none');
 
 let currentEffect = EFFECTS.DEFAULT;
 
@@ -80,7 +79,6 @@ export const reset = () => {
   currentEffect = EFFECTS.DEFAULT;
   hideSlider();
   renderImage();
-  // defaultTag.checked = true;
 };
 
 reset();
