@@ -2,12 +2,15 @@ import { isValid, resetValidation } from './validation.js';
 import { scaleReset } from './scale.js';
 import './effects.js';
 import { isEscapeKey } from './util.js';
+import { showPopup } from './popups.js';
+import { postData } from './api.js';
 
 const uploadFileTag = document.querySelector('#upload-file');
 const modalTag = document.querySelector('.img-upload__overlay');
 const closeButtonTag = document.querySelector('#upload-cancel');
 const formTag = document.querySelector('#upload-select-image');
 const bodyTag = document.querySelector('body');
+const uploadButtonTag = document.querySelector('#upload-submit');
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -41,8 +44,33 @@ closeButtonTag.addEventListener('click', (evt) => {
   closeModal();
 });
 
+const UploadButtonStatus = {
+  DEFAULT: 'Загрузить',
+  SENDING: 'Идет загрузка...'
+};
+
+const disableButton = (isDisabled = true) => {
+  uploadButtonTag.disabled = isDisabled;
+  uploadButtonTag.textContent = isDisabled ? UploadButtonStatus.SENDING : UploadButtonStatus.DEFAULT;
+};
+
 formTag.addEventListener('submit', (evt) => {
-  if (!isValid()) {
-    evt.preventDefault();
+  evt.preventDefault();
+  if (isValid()) {
+    disableButton();
+    postData(new FormData(formTag))
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+        closeModal();
+        showPopup('success');
+      })
+      .catch(() => {
+        showPopup('error');
+      })
+      .finally(() => {
+        disableButton(false);
+      });
   }
 });
