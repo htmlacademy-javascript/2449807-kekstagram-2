@@ -1,7 +1,7 @@
 import { isValid, resetValidation } from './validation.js';
 import { scaleReset } from './scale.js';
 import './effects.js';
-import { isEscapeKey } from './util.js';
+import { setEscControl, removeEscControl } from './esc-control.js';
 import { showPopup } from './popups.js';
 import { postData } from './api.js';
 
@@ -11,20 +11,10 @@ const closeButtonTag = document.querySelector('#upload-cancel');
 const formTag = document.querySelector('#upload-select-image');
 const bodyTag = document.querySelector('body');
 const uploadButtonTag = document.querySelector('#upload-submit');
+const textDescriptionTag = document.querySelector('.text__description');
+const hashtagTag = formTag.querySelector('.text__hashtags');
 
-const onDocumentKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    modalTag.classList.add('hidden');
-    closeModal();
-  }
-};
-
-const openModal = () => {
-  modalTag.classList.remove('hidden');
-  bodyTag.classList.add('modal-open');
-  document.addEventListener('keydown', onDocumentKeydown);
-};
+const canCloseForm = () => !(document.activeElement === textDescriptionTag || document.activeElement === hashtagTag);
 
 const closeModal = () => {
   modalTag.classList.add('hidden');
@@ -32,7 +22,12 @@ const closeModal = () => {
   formTag.reset();
   resetValidation();
   scaleReset();
-  document.removeEventListener('keydown', onDocumentKeydown);
+};
+
+const openModal = () => {
+  modalTag.classList.remove('hidden');
+  bodyTag.classList.add('modal-open');
+  setEscControl(closeModal, canCloseForm);
 };
 
 uploadFileTag.addEventListener('change', () => {
@@ -42,6 +37,7 @@ uploadFileTag.addEventListener('change', () => {
 closeButtonTag.addEventListener('click', (evt) => {
   evt.preventDefault();
   closeModal();
+  removeEscControl();
 });
 
 const UploadButtonStatus = {
