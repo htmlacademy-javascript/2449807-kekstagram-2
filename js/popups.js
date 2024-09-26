@@ -1,3 +1,5 @@
+import { setEscControl, removeEscControl } from './esc-control.js';
+
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 const templates = {
@@ -10,7 +12,11 @@ export const showPopup = (variant) => {
   popup.addEventListener('click', ({ target }) => {
     if (target.classList.contains(`${variant}__button`) || target.classList.contains(variant)) {
       popup.remove();
+      removeEscControl();
     }
+  });
+  setEscControl(() => {
+    popup.remove();
   });
   document.body.append(popup);
 };

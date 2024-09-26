@@ -1,5 +1,6 @@
 import { COMMENTS_STEP } from './const.js';
-import { isEscapeKey } from './util.js';
+import { setEscControl, removeEscControl } from './esc-control.js';
+
 const modalTag = document.querySelector('.big-picture');
 const closeButtonTag = modalTag.querySelector('#picture-cancel');
 const imageTag = modalTag.querySelector('.big-picture__preview img');
@@ -61,29 +62,24 @@ const render = ({ url, description, comments, likes }) => {
   renderComments();
 };
 
-const onDocumentKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    modalTag.classList.add('hidden');
-    closeModal();
-  }
-};
-
 const openModal = (item) => {
   modalTag.classList.remove('hidden');
   render(item);
   bodyTag.classList.add('modal-open');
-  document.addEventListener('keydown', onDocumentKeydown);
+  setEscControl(closeModal);
 };
 
 
-function closeModal () {
+function closeModal() {
   modalTag.classList.add('hidden');
   bodyTag.classList.remove('modal-open');
-  document.removeEventListener('keydown', onDocumentKeydown);
 }
 
-closeButtonTag.addEventListener('click', closeModal);
+closeButtonTag.addEventListener('click', () => {
+  closeModal();
+  removeEscControl();
+}
+);
 
 commentsLoaderButtonTag.addEventListener('click', () => {
   renderComments();
