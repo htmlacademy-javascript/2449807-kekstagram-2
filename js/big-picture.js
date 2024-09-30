@@ -13,7 +13,6 @@ const commentsLoaderButtonTag = modalTag.querySelector('.comments-loader');
 const statLikesTag = modalTag.querySelector('.likes-count');
 const bodyTag = document.querySelector('body');
 
-
 const localComments = [];
 let totalComments = 0;
 let shownComments = 0;
@@ -69,7 +68,6 @@ const openModal = (item) => {
   setEscControl(closeModal);
 };
 
-
 function closeModal() {
   modalTag.classList.add('hidden');
   bodyTag.classList.remove('modal-open');
@@ -78,8 +76,7 @@ function closeModal() {
 closeButtonTag.addEventListener('click', () => {
   closeModal();
   removeEscControl();
-}
-);
+});
 
 commentsLoaderButtonTag.addEventListener('click', () => {
   renderComments();

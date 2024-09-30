@@ -1,11 +1,9 @@
 import { renderCards } from './render-card.js';
-import { FILTERS } from './const';
+import { FILTERS } from './const.js';
 import { debounce } from './util.js';
 
 const sectionFiltersTag = document.querySelector('.img-filters');
 const formFiltersTag = sectionFiltersTag.querySelector('.img-filters__form');
-
-
 
 const localData = [];
 let currentFilter = FILTERS.DEFAULT;

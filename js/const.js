@@ -6,6 +6,8 @@ const MAX_HASHTAGS = 5;
 
 const SPACE = /\s+/g;
 
+const HASHTAG_FORMULA = /^#[a-zа-яё0-9]{1,19}$/i;
+
 const SCALE = {
   DEFAULT: 100,
   MIN: 25,
@@ -70,6 +72,11 @@ const FILTERS = {
   DISCUSSED: 'filter-discussed'
 };
 
+const UploadButtonStatus = {
+  DEFAULT: 'Загрузить',
+  SENDING: 'Идет загрузка...'
+};
+
 export {
   COMMENTS_STEP,
   MAX_SYMBOL,
@@ -80,5 +87,7 @@ export {
   EFFECTSSETTING,
   GET_URL,
   POST_URL,
-  FILTERS
+  FILTERS,
+  UploadButtonStatus,
+  HASHTAG_FORMULA
 };

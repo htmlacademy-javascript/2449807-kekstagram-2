@@ -25,7 +25,7 @@ const setEscControl = (closeModal, condition = null) => {
     condition
   });
   if (!listener) {
-    document.addEventListener('keydown', onDocumentKeydown);
+    listener = document.addEventListener('keydown', onDocumentKeydown);
   }
 };
 
