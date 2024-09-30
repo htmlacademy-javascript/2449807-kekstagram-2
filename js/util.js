@@ -7,7 +7,6 @@ const getRandomInteger = (min, max) => {
   return Math.floor(result);
 };
 
-
 const counter = () => {
   let n = 0;
   return () => ++n;
@@ -26,4 +25,13 @@ const showAlert = (message, time = 5000, color = 'red') => {
   }, time);
 };
 
-export { getRandomInteger, counter, isEscapeKey, showAlert };
+const debounce = (callback, timeoutDelay = 400) => {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export { getRandomInteger, counter, isEscapeKey, showAlert, debounce };

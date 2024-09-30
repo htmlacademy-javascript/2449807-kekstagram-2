@@ -64,6 +64,12 @@ const GET_URL = 'https://31.javascript.htmlacademy.pro/kekstagram/data';
 
 const POST_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
 
+const FILTERS = {
+  DEFAULT: 'filter-default',
+  RANDOM: 'filter-random',
+  DISCUSSED: 'filter-discussed'
+};
+
 export {
   COMMENTS_STEP,
   MAX_SYMBOL,
@@ -73,5 +79,6 @@ export {
   EFFECTS,
   EFFECTSSETTING,
   GET_URL,
-  POST_URL
+  POST_URL,
+  FILTERS
 };

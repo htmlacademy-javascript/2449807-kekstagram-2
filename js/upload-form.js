@@ -13,6 +13,9 @@ const bodyTag = document.querySelector('body');
 const uploadButtonTag = document.querySelector('#upload-submit');
 const textDescriptionTag = document.querySelector('.text__description');
 const hashtagTag = formTag.querySelector('.text__hashtags');
+const fileTag = document.querySelector('#upload-file');
+const imageTag = modalTag.querySelector('.img-upload__preview img');
+const previewTags = modalTag.querySelectorAll('.effects__preview');
 
 const canCloseForm = () => !(document.activeElement === textDescriptionTag || document.activeElement === hashtagTag);
 
@@ -28,6 +31,12 @@ const openModal = () => {
   modalTag.classList.remove('hidden');
   bodyTag.classList.add('modal-open');
   setEscControl(closeModal, canCloseForm);
+  const file = fileTag.files[0];
+  const url = URL.createObjectURL(file);
+  imageTag.src = url;
+  previewTags.forEach((item) => {
+    item.style.backgroundImage = `url(${url})`;
+  });
 };
 
 uploadFileTag.addEventListener('change', () => {
