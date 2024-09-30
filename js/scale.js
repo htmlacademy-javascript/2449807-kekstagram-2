@@ -19,6 +19,7 @@ minusTag.addEventListener('click', () => {
   plusTag.disabled = false;
   render();
 });
+
 plusTag.addEventListener('click', () => {
   currentScale = currentScale + SCALE.SCALE_STEP <= SCALE.MAX ? currentScale + SCALE.SCALE_STEP : SCALE.MAX;
   plusTag.disabled = currentScale === SCALE.MAX;
@@ -29,8 +30,10 @@ plusTag.addEventListener('click', () => {
 const scaleReset = () => {
   currentScale = SCALE.DEFAULT;
   plusTag.disabled = true;
+  minusTag.disabled = false;
   render();
 };
 
 scaleReset();
+
 export { scaleReset };

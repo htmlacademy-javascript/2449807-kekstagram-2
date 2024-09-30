@@ -1,10 +1,13 @@
 import { openModal } from './big-picture.js';
+
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const cardContainerTag = document.querySelector('.pictures');
 const localData = [];
 
 const clearCard = () => {
-  document.querySelectorAll('.picture').forEach((item) => { item.remove() });
+  document.querySelectorAll('.picture').forEach((item) => {
+    item.remove();
+  });
 };
 
 const renderCards = (data) => {
@@ -13,9 +16,11 @@ const renderCards = (data) => {
   clearCard();
   const fragment = document.createDocumentFragment();
   data.forEach((item) => {
-    const { url, comments, likes, id } = item;
+    const { url, comments, likes, id, description } = item;
     const card = pictureTemplate.cloneNode(true);
-    card.querySelector('.picture__img').src = url;
+    const cardImgTag = card.querySelector('.picture__img');
+    cardImgTag.src = url;
+    cardImgTag.alt = description;
     card.querySelector('.picture__comments').textContent = comments.length;
     card.querySelector('.picture__likes').textContent = likes;
     card.dataset.id = id;

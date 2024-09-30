@@ -1,9 +1,10 @@
 import { isValid, resetValidation } from './validation.js';
 import { scaleReset } from './scale.js';
-import './effects.js';
+import { reset as resetEscape } from './effects.js';
 import { setEscControl, removeEscControl } from './esc-control.js';
 import { showPopup } from './popups.js';
 import { postData } from './api.js';
+import { UploadButtonStatus } from './const.js';
 
 const uploadFileTag = document.querySelector('#upload-file');
 const modalTag = document.querySelector('.img-upload__overlay');
@@ -24,6 +25,7 @@ const closeModal = () => {
   bodyTag.classList.remove('modal-open');
   formTag.reset();
   resetValidation();
+  resetEscape();
   scaleReset();
 };
 
@@ -49,11 +51,6 @@ closeButtonTag.addEventListener('click', (evt) => {
   removeEscControl();
 });
 
-const UploadButtonStatus = {
-  DEFAULT: 'Загрузить',
-  SENDING: 'Идет загрузка...'
-};
-
 const disableButton = (isDisabled = true) => {
   uploadButtonTag.disabled = isDisabled;
   uploadButtonTag.textContent = isDisabled ? UploadButtonStatus.SENDING : UploadButtonStatus.DEFAULT;
@@ -69,6 +66,7 @@ formTag.addEventListener('submit', (evt) => {
           throw new Error(response.status);
         }
         closeModal();
+        removeEscControl();
         showPopup('success');
       })
       .catch(() => {

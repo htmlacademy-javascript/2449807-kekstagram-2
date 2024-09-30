@@ -1,4 +1,5 @@
 import { EFFECTS, EFFECTSSETTING } from './const.js';
+
 const sliderGroupTag = document.querySelector('.effect-level');
 const effectsTag = document.querySelector('.effects');
 const imageTag = document.querySelector('.img-upload__preview img');

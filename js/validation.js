@@ -1,9 +1,8 @@
-import {MAX_SYMBOL, MAX_HASHTAGS, SPACE} from './const.js';
+import {MAX_SYMBOL, MAX_HASHTAGS, SPACE, HASHTAG_FORMULA} from './const.js';
 
 const formTag = document.querySelector('#upload-select-image');
 const textDescriptionTag = document.querySelector('.text__description');
 const hashtagTag = formTag.querySelector('.text__hashtags');
-const hashtagSort = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const hashtagList = (value) => value.replaceAll(SPACE, ' ').trim().toLowerCase().split(' ');
 
@@ -14,7 +13,7 @@ const pristine = new Pristine(formTag, {
 
 const checkDescription = (value) => value.length <= MAX_SYMBOL;
 
-const checkHashtags = (value) => !value.length || hashtagList(value).every((item) => hashtagSort.test(item));
+const checkHashtags = (value) => !value.length || hashtagList(value).every((item) => HASHTAG_FORMULA.test(item));
 
 const checkHashtagsCount = (value) => hashtagList(value).length <= MAX_HASHTAGS;
 
@@ -29,6 +28,7 @@ pristine.addValidator(
   checkDescription,
   `Длина описания не должна превышать ${MAX_SYMBOL} символов`
 );
+
 pristine.addValidator(
   hashtagTag,
   checkHashtags,
