@@ -4,7 +4,7 @@ const formTag = document.querySelector('#upload-select-image');
 const textDescriptionTag = document.querySelector('.text__description');
 const hashtagTag = formTag.querySelector('.text__hashtags');
 
-const hashtagList = (value) => value.replaceAll(SPACE, ' ').trim().toLowerCase().split(' ');
+const getHashtagList = (value) => value.replaceAll(SPACE, ' ').trim().toLowerCase().split(' ');
 
 const pristine = new Pristine(formTag, {
   classTo: 'img-upload__field-wrapper',
@@ -13,12 +13,12 @@ const pristine = new Pristine(formTag, {
 
 const checkDescription = (value) => value.length <= MAX_SYMBOL;
 
-const checkHashtags = (value) => !value.length || hashtagList(value).every((item) => HASHTAG_FORMULA.test(item));
+const checkHashtags = (value) => !value.length || getHashtagList(value).every((item) => HASHTAG_FORMULA.test(item));
 
-const checkHashtagsCount = (value) => hashtagList(value).length <= MAX_HASHTAGS;
+const checkHashtagsCount = (value) => getHashtagList(value).length <= MAX_HASHTAGS;
 
 const checkUniqueHashtags = (value) => {
-  const hashs = hashtagList(value);
+  const hashs = getHashtagList(value);
   const uniques = [...new Set(hashs)];
   return hashs.length === uniques.length;
 };
