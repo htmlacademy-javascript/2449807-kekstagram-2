@@ -14,7 +14,7 @@ const filterActions = {
   [FILTERS.DISCUSSED]: () => [...localData].sort((a, b) => b.comments.length - a.comments.length)
 };
 
-const activeButton = (button) => {
+const setActiveButton = (button) => {
   formFiltersTag.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
   button.classList.add('img-filters__button--active');
 };
@@ -30,7 +30,7 @@ formFiltersTag.addEventListener('click', debounce(({ target }) => {
 formFiltersTag.addEventListener('click', ({ target }) => {
   const button = target.closest('.img-filters__button');
   if (button) {
-    activeButton(button);
+    setActiveButton(button);
   }
 });
 
